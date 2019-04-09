@@ -17,7 +17,7 @@ RUN apt-get install -y ./libyang_0.16-r2_amd64.deb ./sysrepo_0.7.7_amd64.deb \
 RUN apt-get install -y ./hicn_sysrepo_plugin-19.01-176-release-Linux.deb --no-install-recommends
  
 # Install hicn dependencies
-RUN curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb.sh | sudo bash
+RUN curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb.sh | bash
 RUN apt-get install libparc-dev libasio-dev libcurl4-openssl-dev --no-install-recommends
  
 # Build hicn suite (from source for disabling punting)
