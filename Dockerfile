@@ -16,6 +16,10 @@ RUN apt-get install -y ./libyang_0.16-r2_amd64.deb ./sysrepo_0.7.7_amd64.deb \
 # Install sysrepo hicn plugin
 RUN apt-get install -y ./hicn_sysrepo_plugin-19.01-176-release-Linux.deb --no-install-recommends
  
+# Install hicn dependencies
+RUN curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb.sh | sudo bash
+RUN apt-get install libparc-dev libasio-dev libcurl4-openssl-dev --no-install-recommends
+ 
 # Build hicn suite (from source for disabling punting)
 WORKDIR /hicn
 RUN git clone https://github.com/FDio/hicn.git \
@@ -24,7 +28,7 @@ RUN git clone https://github.com/FDio/hicn.git \
  && make -j4 install
 
 # Clean up
-RUN apt-get remove -y curl git cmake build-essential \
+RUN apt-get remove -y curl git cmake build-essential libparc-dev libasio-dev libcurl4-openssl-dev \
  && rm -rf /var/lib/apt/lists/* \
  && apt-get autoremove -y \
  && apt-get clean
