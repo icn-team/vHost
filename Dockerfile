@@ -14,7 +14,7 @@ RUN git clone https://github.com/FDio/hicn.git \
  && make -j4 install
 
 # Clean up
-RUN apt-get remove -y curl \
+RUN apt-get remove -y cmake build-essential libasio-dev libcurl4-openssl-dev curl \
  && rm -rf /var/lib/apt/lists/* \
  && apt-get autoremove -y \
  && apt-get clean
