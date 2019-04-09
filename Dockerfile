@@ -20,7 +20,7 @@ RUN apt-get install -y ./hicn_sysrepo_plugin-19.01-176-release-Linux.deb --no-in
 WORKDIR /hicn
 RUN git clone https://github.com/FDio/hicn.git \
  && mkdir build && cd build \
- && cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DENABLE_PUNTING=OFF -DBUILD_APPS=ON \
+ && cmake ../hicn -DCMAKE_INSTALL_PREFIX=/usr -DENABLE_PUNTING=OFF -DBUILD_APPS=ON \
  && make -j4 install
 
 # Clean up
