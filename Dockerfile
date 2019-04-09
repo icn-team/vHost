@@ -18,7 +18,7 @@ RUN apt-get install -y ./hicn_sysrepo_plugin-19.01-176-release-Linux.deb --no-in
  
 # Install hicn dependencies
 RUN curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb.sh | bash
-RUN apt-get install libparc-dev libasio-dev libcurl4-openssl-dev --no-install-recommends
+RUN apt-get install -y libparc-dev libasio-dev libcurl4-openssl-dev --no-install-recommends
  
 # Build hicn suite (from source for disabling punting)
 WORKDIR /hicn
