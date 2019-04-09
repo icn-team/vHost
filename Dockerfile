@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 # Install amin packages
 RUN apt-get update \
- && apt-get install -y curl cmake build-essential
+ && apt-get install -y curl git cmake build-essential
 
 # Install sysrepo + dependencies
 RUN curl -OL https://github.com/muscariello/build-scripts/raw/master/deb/libyang_0.16-r2_amd64.deb \
@@ -24,7 +24,7 @@ RUN git clone https://github.com/FDio/hicn.git \
  && make -j4 install
 
 # Clean up
-RUN apt-get remove -y curl cmake build-essential \
+RUN apt-get remove -y curl git cmake build-essential \
  && rm -rf /var/lib/apt/lists/* \
  && apt-get autoremove -y \
  && apt-get clean
