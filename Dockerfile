@@ -1,5 +1,7 @@
 FROM ubuntu:18.04
- 
+
+RUN apt-get install -y curl
+
 # Install hicn dependencies
 RUN curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb.sh | bash
 RUN apt-get install -y cmake build-essential libparc-dev libasio-dev libcurl4-openssl-dev --no-install-recommends
@@ -12,7 +14,7 @@ RUN git clone https://github.com/FDio/hicn.git \
  && make -j4 install
 
 # Clean up
-RUN apt-get remove -y curl git cmake build-essential libasio-dev libcurl4-openssl-dev \
+RUN apt-get remove -y curl \
  && rm -rf /var/lib/apt/lists/* \
  && apt-get autoremove -y \
  && apt-get clean
