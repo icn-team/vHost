@@ -28,3 +28,7 @@ RUN apt-get remove -y curl cmake build-essential \
  && rm -rf /var/lib/apt/lists/* \
  && apt-get autoremove -y \
  && apt-get clean
+
+RUN rm -r /hicn
+
+CMD ["/usr/bin/hicn-light-daemon"]
