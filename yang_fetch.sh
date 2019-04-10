@@ -4,6 +4,7 @@
 # The Metro Ethernet Forum, open source such as Open Daylight or vendor specific modules
 
 YANG_CATALOG="https://raw.githubusercontent.com/YangModels/yang/master/standard/ietf/RFC/"
+VHOST_REPO="https://raw.githubusercontent.com/icn-team/vHost/master/yang-models/"
 
 YANG_LIST=()
 mkdir -p ${PWD}/yang
