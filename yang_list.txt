@@ -1,0 +1,7 @@
+ietf-netconf-notifications%402012-02-06.yang
+ietf-netconf-with-defaults%402011-06-01.yang
+ietf-netconf%402011-06-01.yang
+ietf-netconf-monitoring%402010-10-04.yang
+ietf-netconf-acm%402018-02-14.yang
+ietf-netconf-partial-lock%402009-10-19.yang
+ietf-netconf-time%402016-01-26.yang
