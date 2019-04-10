@@ -54,16 +54,18 @@ download() {
 }
 
 install() {
-    command -v echo > /dev/null
+    command -v sysrepoctl > /dev/null
     if [ ${?} != 0 ]; then
         echo "Could not find command \"sysrepoctl\"."
         exit ${EXIT_CODE}
     else
         pushd ${PREFIX}
         echo "Changing directory to ${PWD}"
-        find ${PREFIX} -type f -name '*.yang' -exec echo "sysrepoctl --install --yang={}" \;
+        find ${PREFIX} -type f -name '*.yang' -exec sysrepoctl --install --yang={} \;
         popd
     fi
+
+    sysrepoctl --list
 }
 
 
