@@ -34,18 +34,21 @@ read_yang_list() {
 }
 
 download() {
-    for i in `seq 0 ${NYANG}` ;
-    do
+    ret=0
+    pushd ${PREFIX}
+    for i in $(seq 0 ${NYANG}); do
         echo "Downloading ${YANG_LIST[$i]}"
         URL="${YANG_CATALOG}${YANG_LIST[$i]}"
-        wget --directory-prefix=${PREFIX} ${URL}
+        curl -OL ${URL}
+        ((ret=ret+?))
     done
-    if [ ${?} = 0 ];
-      then
-          message "Successfully Downloaded" "OK"
-      else
-          message "Error downloading" "ERR"
-          exit ${EXIT_CODE}
+    popd ${PREFIX}
+
+    if [ ${ret} = 0 ]; then
+        message "Successfully Downloaded" "OK"
+    else
+        message "Error downloading" "ERR"
+        exit ${EXIT_CODE}
     fi
 #    name="${LOGDATE}@$1"
 }
