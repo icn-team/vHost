@@ -39,11 +39,11 @@ download() {
     pushd ${PREFIX}
     for i in $(seq 0 ${NYANG}); do
         echo "Downloading ${YANG_LIST[$i]}"
-        URL="${VHOST_REPO}${YANG_LIST[$i]}"
+        URL="${YANG_CATALOG}${YANG_LIST[$i]}"
         curl -OL ${URL}
-        ((ret=ret+?))
+        ((ret=ret+${?}))
     done
-    popd ${PREFIX}
+    popd
 
     if [ ${ret} = 0 ]; then
         message "Successfully Downloaded" "OK"
