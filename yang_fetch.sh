@@ -62,7 +62,9 @@ install() {
     else
         pushd ${PREFIX}
         echo "Changing directory to ${PWD}"
-        find ${PREFIX} -type f -name '*.yang' -exec sysrepoctl --install --yang={} \;
+        for i in $(seq 0 ${NYANG}); do
+          sysrepoctl --install --yang=${YANG_LIST[$i]}
+        done
         popd
     fi
 
