@@ -63,7 +63,7 @@ install() {
         pushd ${PREFIX}
         echo "Changing directory to ${PWD}"
         for i in $(seq 0 ${NYANG}); do
-          sysrepoctl --install --yang=${YANG_LIST[$i]}
+          sysrepoctl --install --yang=${YANG_LIST[$i]} --search-installed
         done
         popd
     fi
