@@ -62,6 +62,7 @@ RUN apt-get install -y git cmake build-essential libpcre3-dev swig \
                       libcurl4-openssl-dev libev-dev libevent-dev \
                       libparc-dev libpcre3-dev libprotobuf-c-dev \
                       libssh-dev libssl-dev protobuf-c-compiler swig \
+  && apt-get install libprotobuf-c1 libev4\
   && rm -rf /var/lib/apt/lists/* \
   && apt-get autoremove -y \
   && apt-get clean && rm -r /hicn\
