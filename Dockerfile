@@ -3,6 +3,7 @@ FROM ubuntu:18.04
 # Build hicn suite (from source for disabling punting)
 WORKDIR /hicn
 ENV SYSREPO_PLUGIN_URL=https://jenkins.fd.io/job/hicn-sysrepo-plugin-verify-master/lastSuccessfulBuild/artifact/scripts/build/hicn_sysrepo_plugin-19.01-176-release-Linux.deb
+ENV HICN_PLUGIN_LIB=/usr/lib/x86_64-linux-gnu/sysrepo/plugins/libhicn.so
 
 # Use bash shell
 SHELL ["/bin/bash", "-c"]
@@ -63,6 +64,9 @@ RUN apt-get install -y git cmake build-essential libpcre3-dev swig \
                       libssh-dev libssl-dev protobuf-c-compiler swig \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get autoremove -y \
-  && apt-get clean && rm -r /hicn
-
+  && apt-get clean && rm -r /hicn\
+  ####################################################
+  # Delete library for hicn-plugin
+  ####################################################
+  && rm ${HICN_PLUGIN_LIB}
 WORKDIR /
