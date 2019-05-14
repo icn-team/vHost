@@ -14,13 +14,15 @@ RUN apt-get update && apt-get install -y curl
 RUN curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb.sh | bash
 RUN apt-get update
 
+RUN  apt-get update && apt-get install -y iproute2 net-tools ethtool
+
 # Install main packages
 RUN apt-get install -y git cmake build-essential libpcre3-dev swig                              \
     libprotobuf-c-dev libev-dev libavl-dev protobuf-c-compiler libssl-dev                       \
-    libssh-dev libcurl4-openssl-dev libasio-dev libparc-dev                                     \
+    libssh-dev libcurl4-openssl-dev libasio-dev libparc libparc-dev                             \
     ffmpeg libxml2 ffmpeg libxml2-dev qt5-default libqtav-dev libqt5svg5-dev                    \
     libqt5charts5-dev qtmultimedia5-dev qtdeclarative5-dev --no-install-recommends              \
-    libavcodec-dev libavutil-dev libavformat-dev dumb-init;                                     \
+    libavcodec-dev libavutil-dev libavformat-dev dumb-init ;                                     \
   # Install hicn dependencies                                                                   \
   rm -rf /var/lib/apt/lists/*                                                                   \
   ###############################################                                               \
@@ -83,7 +85,7 @@ RUN apt-get install -y git cmake build-essential libpcre3-dev swig              
                       libcurl4-openssl-dev libev-dev libevent-dev                               \
                       libparc-dev libpcre3-dev libprotobuf-c-dev                                \
                       libssh-dev libssl-dev protobuf-c-compiler swig                            \
-  && apt-get install libprotobuf-c1 libev4                                                      \
+  && apt-get install libprotobuf-c1 libev4 libssh-4                                             \
   && rm -rf /var/lib/apt/lists/*                                                                \
   && apt-get autoremove -y                                                                      \
   && apt-get clean && rm -r /hicn                                                               \
@@ -99,7 +101,8 @@ WORKDIR /tmp
 
 ENV YANG_MODEL_INSTALL_SCRIPT=https://raw.githubusercontent.com/icn-team/vSwitch/master/yang_fetch.sh
 ENV YANG_MODEL_LIST=https://raw.githubusercontent.com/icn-team/vSwitch/master/yang_list.txt
-RUN curl -OL ${YANG_MODEL_LIST} && curl -s ${YANG_MODEL_INSTALL_SCRIPT} | TERM="xterm" bash -x
-COPY ifname.sh .
+ENV INIT=https://raw.githubusercontent.com/icn-team/vSwitch/master/ifinit.sh
+RUN curl -OL ${YANG_MODEL_LIST} && curl -s ${YANG_MODEL_INSTALL_SCRIPT} && curl -OL ${INIT} | TERM="xterm" bash -x
+COPY init.sh .
 
 WORKDIR /
