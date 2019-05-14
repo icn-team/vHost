@@ -19,7 +19,7 @@ RUN apt-get install -y git cmake build-essential libpcre3-dev swig              
     libssh-dev libcurl4-openssl-dev libasio-dev libparc-dev                                     \
     ffmpeg libxml2 ffmpeg libxml2-dev qt5-default libqtav-dev libqt5svg5-dev                    \
     libqt5charts5-dev qtmultimedia5-dev qtdeclarative5-dev --no-install-recommends              \
-    libavcodec-dev libavutil-dev libavformat-dev;                                               \
+    libavcodec-dev libavutil-dev libavformat-dev dumb-init;                                     \
   # Install hicn dependencies                                                                   \
   rm -rf /var/lib/apt/lists/*                                                                   \
   ###############################################                                               \
@@ -52,7 +52,7 @@ RUN apt-get install -y git cmake build-essential libpcre3-dev swig              
   # Download sysrepo plugin                                                                     \
   && curl -OL ${SYSREPO_PLUGIN_URL}                                                             \
   # Install sysrepo hicn plugin                                                                 \
-  && apt-get install -y ./${SYSREPO_PLUGIN_DEB} --no-install-recommends \
+  && apt-get install -y ./${SYSREPO_PLUGIN_DEB} --no-install-recommends                         \
   ###################################################                                           \
   # Build hicn suite from source                                                                \
   ###################################################                                           \
