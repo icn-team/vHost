@@ -75,9 +75,10 @@ RUN apt-get install -y git cmake build-essential libpcre3-dev swig              
   && make -j 4 && make install                                                                  \
   && popd && popd                                                                               \
   && pushd viper                                                                                \
+  && sed -i 's/usr\/include/usr\/local\/include/g' viper.pro                                    \
   && mkdir build && cd build                                                                    \
-  && qmake ../viper.pro "TRANSRPOT_LIBRARY = HICNET"                                            \
-  && make -j 4 install && popd                                                                  \
+  && qmake ../viper.pro "TRANSPORT_LIBRARY = HICNET"                                            \
+  && make -j 4 && popd                                                                          \
   ###################################################                                           \
   # Clean up                                                                                    \
   ###################################################                                           \
@@ -88,7 +89,7 @@ RUN apt-get install -y git cmake build-essential libpcre3-dev swig              
   && apt-get install libprotobuf-c1 libev4 libssh-4                                             \
   && rm -rf /var/lib/apt/lists/*                                                                \
   && apt-get autoremove -y                                                                      \
-  && apt-get clean && rm -r /hicn                                                               \
+  && apt-get clean                                                                              \
   ####################################################                                          \
   # Delete library for hicn-plugin                                                              \
   ####################################################                                          \
