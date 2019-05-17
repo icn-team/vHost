@@ -9,7 +9,7 @@ do
         ethtool -K $i tx off rx off ufo off gso off gro off tso off
  fi
 done
-hicn-light-daemon --config /etc/hicn/startup.exec --port 9695 --log-file /tmp/hicn_light.log --capacity 1000 &
+hicn-light-daemon --config /etc/hicn/startup1.exec --port 9695 --log-file /tmp/hicn_light.log --capacity 1000 &
 sleep 2
 sysrepod
 sysrepo-plugind
