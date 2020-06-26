@@ -9,7 +9,6 @@ RUN apt-get update
 RUN apt-get install -y git ssh curl
 
 # Clone the repos
-COPY . ./hproxy
 RUN git clone https://github.com/FDio/hicn.git
 
 RUN curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb.sh | bash
