@@ -21,8 +21,7 @@ jobs:
           docker login -u ${{ secrets.DOCKER_USERNAME }} \
                        -p ${{ secrets.DOCKERHUB_PASSWORD }}
           docker buildx build \
-            --platform linux/amd64 \
-            --output type=docker \
+            --platform linux/amd64,linux/arm64 \
             --no-cache \
-            --file Dockerfile -t icnteam/vhost:amd64 .
-          docker push icnteam/vhost:amd64
+            --file Dockerfile -t icnteam/vhost:22.02 \
+            --push .
