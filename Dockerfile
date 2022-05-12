@@ -9,6 +9,6 @@ RUN apt-get install -y curl
 RUN curl -s https://packagecloud.io/install/repositories/fdio/2202/script.deb.sh | bash
 RUN curl -s https://packagecloud.io/install/repositories/fdio/hicn/script.deb.sh | bash
 
-RUN apt-get install -y hicn-apps hicn-light facemgr hicn-plugin vpp vpp-plugin-core
+RUN apt-get install -y hicn-apps hicn-light facemgr hicn-plugin vpp vpp-plugin-core iproute2
 
 CMD ["/usr/bin/hicn-light-daemon"]
